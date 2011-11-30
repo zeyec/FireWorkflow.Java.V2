@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f20:workflow-process biz-category="" display-name=""
+	entry="" id="" name="" xmlns:f20="http://www.fireflow.org/schema/workflowprocess"
+	xmlns:r="http://www.fireflow.org/schema/resource" xmlns:s="http://www.fireflow.org/schema/service"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fireflow.org/schema/workflowprocess http://www.fireflow.org/schema/workflowprocess/WorkflowProcessSchema-2.0.xsd ">
+	<f20:description></f20:description>
+	<f20:import display-name="" id="" location="" name=""
+		type="org.fireflow.constants.SERVICES_IMPORT">
+		<f20:description></f20:description>
+	</f20:import>
+	<s:services>
+		<s:service biz-category="" display-name="" executor=""
+			file-name="" id="" name="" service-type="">
+			<s:operations>
+				<s:operation>
+					<s:operation-name></s:operation-name>
+					<s:io-specification>
+						<s:inputs>
+							<s:input data-pattern="" data-type="" default-value=""
+								display-name="" name="Name" />
+						</s:inputs>
+						<s:outputs>
+							<s:output data-type="" display-name="" name="Name" />
+						</s:outputs>
+					</s:io-specification>
+				</s:operation>
+			</s:operations>
+			<s:prop-groups>
+				<s:prop-group display-name="" name="">
+					<s:prop display-name="" name="" value="">
+						<s:description></s:description>
+					</s:prop>
+				</s:prop-group>
+			</s:prop-groups>
+		</s:service>
+	</s:services>
+	<r:resources>
+		<r:resource displayName="" file-name="" id="" name=""
+			resource-type="ProcessInstanceCreator">
+			<r:resolver bean-name="">
+				<r:parameters>
+					<r:parameter data-pattern="" data-type=""
+						default-value="" display-name="" name="Name" />
+				</r:parameters>
+			</r:resolver>
+		</r:resource>
+	</r:resources>
+	<f20:properties>
+		<f20:property data-pattern="" data-type="" display-name=""
+			id="" init-value="" name="">
+			<f20:description></f20:description>
+		</f20:property>
+	</f20:properties>
+	<f20:duration is-business-time="true" unit="DAY" value="0" />
+	<f20:start-nodes>
+		<f20:start-node display-name="" id="" name="">
+			<f20:description></f20:description>
+			<f20:decorator>
+				<f20:activity-decorator></f20:activity-decorator>
+			</f20:decorator>
+			<f20:extended-attibutes>
+				<f20:extended-attribute name="" value="" />
+			</f20:extended-attibutes>
+		</f20:start-node>
+	</f20:start-nodes>
+	<f20:activities>
+		<f20:activity display-name="" id="" loop-strategy=""
+			name="" priority="">
+			<f20:description></f20:description>
+			<f20:decorator>
+				<f20:activity-decorator></f20:activity-decorator>
+			</f20:decorator>
+			<f20:properties>
+				<f20:property data-pattern="" data-type=""
+					display-name="" id="" init-value="" name="">
+					<f20:description></f20:description>
+				</f20:property>
+			</f20:properties>
+			<f20:duration is-business-time="true" unit="DAY" value="0" />
+			<f20:service-binding operation-name=""
+				service-id="">
+				<f20:input-assignments>
+					<f20:input-assignment>
+						<f20:from>
+							<f20:expression display-name="" language="" name="">
+								<f20:body></f20:body>
+							</f20:expression>
+						</f20:from>
+						<f20:to></f20:to>
+					</f20:input-assignment>
+				</f20:input-assignments>
+				<f20:output-assignments>
+					<f20:output-assignment>
+						<f20:from>
+							<f20:expression display-name="" language="" name="">
+								<f20:body></f20:body>
+							</f20:expression>
+						</f20:from>
+						<f20:to></f20:to>
+					</f20:output-assignment>
+				</f20:output-assignments>
+				<f20:prop-overrides>
+					<f20:prop-override prop-group-name="" prop-name=""
+						value="" />
+				</f20:prop-overrides>
+			</f20:service-binding>
+			<f20:resource-binding assignment-strategy=""
+				display-name="">
+				<f20:administrators>
+					<f20:resource-ref resource-id="">
+						<f20:parameter-assignments>
+							<f20:parameter-assignment>
+								<f20:from>
+									<f20:expression display-name="" language=""
+										name="">
+										<f20:body></f20:body>
+									</f20:expression>
+								</f20:from>
+								<f20:to></f20:to>
+							</f20:parameter-assignment>
+						</f20:parameter-assignments>
+					</f20:resource-ref>
+				</f20:administrators>
+				<f20:potential-owners>
+					<f20:resource-ref resource-id="">
+						<f20:parameter-assignments>
+							<f20:parameter-assignment>
+								<f20:from>
+									<f20:expression display-name="" language=""
+										name="">
+										<f20:body></f20:body>
+									</f20:expression>
+								</f20:from>
+								<f20:to></f20:to>
+							</f20:parameter-assignment>
+						</f20:parameter-assignments>
+					</f20:resource-ref>
+				</f20:potential-owners>
+				<f20:readers>
+					<f20:resource-ref resource-id="">
+						<f20:parameter-assignments>
+							<f20:parameter-assignment>
+								<f20:from>
+									<f20:expression display-name="" language=""
+										name="">
+										<f20:body></f20:body>
+									</f20:expression>
+								</f20:from>
+								<f20:to></f20:to>
+							</f20:parameter-assignment>
+						</f20:parameter-assignments>
+					</f20:resource-ref>
+				</f20:readers>
+			</f20:resource-binding>
+			<f20:event-listeners>
+				<f20:event-listener bean-name="" biz-category=""
+					display-name="" id="" name="">
+					<f20:description></f20:description>
+				</f20:event-listener>
+			</f20:event-listeners>
+			<f20:extended-attributes>
+				<f20:extended-attribute name="" value="" />
+			</f20:extended-attributes>
+		</f20:activity>
+	</f20:activities>
+	<f20:routers>
+		<f20:router display-name="" id="" name="">
+			<f20:description></f20:description>
+			<f20:decorator>
+				<f20:activity-decorator></f20:activity-decorator>
+			</f20:decorator>
+			<f20:extended-attributes>
+				<f20:extended-attribute name="" value="" />
+			</f20:extended-attributes>
+		</f20:router>
+	</f20:routers>
+	<f20:end-nodes>
+		<f20:end-node display-name="" id="" name="">
+			<f20:description></f20:description>
+			<f20:decorator>
+				<f20:activity-decorator></f20:activity-decorator>
+			</f20:decorator>
+			<f20:extended-attributes>
+				<f20:extended-attribute name="" value="" />
+			</f20:extended-attributes>
+		</f20:end-node>
+	</f20:end-nodes>
+	<f20:transitions>
+		<f20:transition display-name="" from="" id=""
+			is-default="true" is-loop="true" name="" to="">
+			<f20:description></f20:description>
+			<f20:condition>
+				<f20:expression display-name="" language="" name="">
+					<f20:body></f20:body>
+				</f20:expression>
+			</f20:condition>
+			<f20:extended-attributes>
+				<f20:extended-attribute name="" value="" />
+			</f20:extended-attributes>
+		</f20:transition>
+	</f20:transitions>
+	<f20:event-listeners>
+		<f20:event-listener bean-name="" biz-category=""
+			display-name="" id="" name="">
+			<f20:description></f20:description>
+		</f20:event-listener>
+	</f20:event-listeners>
+	<f20:extended-attributes>
+		<f20:extended-attribute name="" value="" />
+	</f20:extended-attributes>
+</f20:workflow-process>

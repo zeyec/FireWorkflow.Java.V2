@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.fireflow.org/schema/service" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:s="http://www.fireflow.org/schema/service">
+
+    <element name="services" type="s:servicesType"></element>
+
+    <element name="service" type="s:serviceType"></element>
+
+
+    <complexType name="servicesType">
+    	<sequence>
+    		<element ref="s:service" minOccurs="0" maxOccurs="unbounded"></element>
+    	</sequence></complexType>
+
+    <complexType name="serviceType">
+    	<sequence>
+    		<element ref="s:operations" minOccurs="0" maxOccurs="1"></element>
+    		<element ref="s:prop-groups" minOccurs="0" maxOccurs="1"></element>
+    	</sequence>
+    	<attribute name="id" type="string" use="required"></attribute>
+    	<attribute name="name" type="string" use="required"></attribute>
+    	<attribute name="display-name" type="string" use="optional"></attribute>
+    	<attribute name="biz-category" type="string" use="optional">
+    		<annotation>
+    			<documentation>业务类别，例如：公司行政管理/请假申请。该字段用于将服务分门别类。</documentation>
+    		</annotation></attribute>
+    	<attribute name="service-type" type="string" use="required">
+    		<annotation>
+    			<documentation>服务类型，该字段由Fire workflow系统或者服务扩展插件决定，缺省的可用值为：HUMAN,JAVA,TIMER,WEBSERVICE,SUBFLOW等等。</documentation>
+    		</annotation></attribute>
+    	<attribute name="executor" type="string" use="optional">
+    		<annotation>
+    			<documentation>自定义的服务执行器的名称，如果该名称以“#”开头，则表示IOC容器中的bean的Name，例如：#MyJavaExecutor表示一个名称为“MyJavaExecutor”的bean；否则表示Executor的java类名称。</documentation>
+    		</annotation></attribute>
+    </complexType>
+
+    <element name="operations" type="s:operationsType"></element>
+
+    <element name="operation" type="s:operationType"></element>
+
+    <complexType name="operationsType">
+    	<sequence>
+    		<element ref="s:operation" minOccurs="0" maxOccurs="unbounded"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="operationType">
+    	<sequence>
+    		<element name="operation-name" type="string" minOccurs="1" maxOccurs="1"></element>
+    		<element ref="s:io-specification" minOccurs="0" maxOccurs="1">
+    			<annotation>
+    				<documentation>服务操作的输入输出定义</documentation>
+    			</annotation></element>
+    	</sequence>
+    </complexType>
+
+    <element name="io-specification" type="s:io-specificationType"></element>
+
+    <complexType name="io-specificationType">
+    	<sequence>
+    		<element ref="s:inputs" minOccurs="0" maxOccurs="1"></element>
+    		<element ref="s:outputs" minOccurs="0" maxOccurs="1"></element>
+    	</sequence>
+    </complexType>
+
+    <element name="inputs" type="s:inputsType"></element>
+
+    <element name="input" type="s:inputType"></element>
+
+    <element name="outputs" type="s:outputsType"></element>
+
+    <element name="output" type="s:outputType"></element>
+
+    <complexType name="outputsType">
+    	<sequence>
+    		<element ref="s:output" minOccurs="0" maxOccurs="unbounded"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="inputsType">
+    	<sequence>
+    		<element ref="s:input" minOccurs="0" maxOccurs="unbounded"></element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="inputType">
+    	<attribute name="name" type="Name"></attribute>
+    	<attribute name="display-name" type="string"></attribute>
+    	<attribute name="data-type" type="string" use="required">
+    		<annotation>
+    			<documentation>输入的数据类型，java系统中用类型的类名表示，例如：java.lang.String，表示一个String类型的输入</documentation>
+    		</annotation></attribute>
+    	<attribute name="data-pattern" type="string">
+    		<annotation>
+    			<documentation>数据格式，主要用于日期类型</documentation>
+    		</annotation></attribute>
+    	<attribute name="default-value" type="string">
+    		<annotation>
+    			<documentation>缺省值</documentation>
+    		</annotation></attribute>
+    </complexType>
+
+    <complexType name="outputType">
+    	<attribute name="name" type="Name"></attribute>
+    	<attribute name="display-name" type="string"></attribute>
+    	<attribute name="data-type" type="string">
+    		<annotation>
+    			<documentation>数据类型，在java系统中用java类名表示，例如java.lang.Integer表示一个整数类型的输出。</documentation>
+    		</annotation></attribute>
+    </complexType>
+
+    <element name="prop-groups" type="s:prop-groupsType"></element>
+
+    <element name="prop-group" type="s:prop-groupType"></element>
+
+    <element name="prop" type="s:propType"></element>
+
+    <complexType name="prop-groupsType">
+    	<sequence>
+    		<element ref="s:prop-group" minOccurs="0" maxOccurs="unbounded"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="prop-groupType">
+    	<sequence>
+    		<element ref="s:prop" minOccurs="0"
+    			maxOccurs="unbounded">
+    		</element>
+    	</sequence>
+    	<attribute name="name" type="string"></attribute>
+    	<attribute name="display-name" type="string"></attribute>
+    </complexType>
+
+    <complexType name="propType">
+    	<sequence>
+    		<element name="description" type="string" minOccurs="0"
+    			maxOccurs="1">
+    		</element>
+    	</sequence>
+    	<attribute name="name" type="string"></attribute>
+    	<attribute name="display-name" type="string"></attribute>
+    	<attribute name="value" type="string"></attribute>
+    </complexType>
+</schema>

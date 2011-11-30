@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<f20:workflow-process xmlns:f20="http://www.fireflow.org/schema/workflowprocess" xmlns:s="http://www.fireflow.org/schema/service" xmlns:r="http://www.fireflow.org/schema/resource" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fireflow.org/schema/workflowprocess http://www.fireflow.org/schema/workflowprocess/WorkflowProcessSchema-2.0.xsd http://www.fireflow.org/schema/service http://www.fireflow.org/schema/service/ServiceSchema-2.0.xsd http://www.fireflow.org/schema/resource http://www.fireflow.org/schema/resource/ResourceSchema-2.0.xsd" id="TheProcess4TestSerializer_1" name="TheProcess4TestSerializer_1" entry="TheProcess4TestSerializer_1.Start">
+    <s:services>
+        <s:service id="Application" name="Application" service-type="Human" display-name="申请">
+            <s:operations>
+                <s:operation>
+                    <s:operation-name>xyz/Application.jsp</s:operation-name>
+                </s:operation>
+            </s:operations>
+            <s:prop-groups>
+                <s:prop-group name="Common Properties" display-name="Common Properties"/>
+            </s:prop-groups>
+        </s:service>
+    </s:services>
+    <f20:start-nodes>
+        <f20:start-node id="TheProcess4TestSerializer_1.Start" name="Start">
+            <f20:decorator>
+                <f20:normal-start-decorator/>
+            </f20:decorator>
+        </f20:start-node>
+        <f20:start-node id="TheProcess4TestSerializer_1.CatchCompensation" name="CatchCompensation">
+            <f20:decorator>
+                <f20:catch-compensation-decorator attached-to-activity="TheProcess4TestSerializer_1.Activity1" compensation-code="org.fireflow.constants.COMPENSATE_ALL"/>
+            </f20:decorator>
+        </f20:start-node>
+    </f20:start-nodes>
+    <f20:activities>
+        <f20:activity id="TheProcess4TestSerializer_1.Activity1" name="Activity1" loop-strategy="org.fireflow.constants.REDO">
+            <f20:description>This is activity1</f20:description>
+        </f20:activity>
+        <f20:activity id="TheProcess4TestSerializer_1.Activity2" name="Activity2" loop-strategy="org.fireflow.constants.REDO">
+            <f20:service-binding service-id="Application" operation-name="xyz/Application.jsp"/>
+        </f20:activity>
+        <f20:activity id="TheProcess4TestSerializer_1.HandleCompensation" name="HandleCompensation" loop-strategy="org.fireflow.constants.REDO"/>
+    </f20:activities>
+    <f20:routers>
+        <f20:router id="TheProcess4TestSerializer_1.Router" name="Router" display-name="router1">
+            <f20:description>路由1</f20:description>
+        </f20:router>
+    </f20:routers>
+    <f20:end-nodes>
+        <f20:end-node id="TheProcess4TestSerializer_1.End1" name="End1">
+            <f20:decorator>
+                <f20:throw-compensation-decorator compensation-codes="TheCompensationActivity"/>
+            </f20:decorator>
+        </f20:end-node>
+        <f20:end-node id="TheProcess4TestSerializer_1.End2" name="End2">
+            <f20:decorator>
+                <f20:normal-end-decorator/>
+            </f20:decorator>
+        </f20:end-node>
+    </f20:end-nodes>
+    <f20:transitions>
+        <f20:transition id="TheProcess4TestSerializer_1.catchCompensation2HandleCompensation" from="TheProcess4TestSerializer_1.CatchCompensation" to="TheProcess4TestSerializer_1.HandleCompensation" name="catchCompensation2HandleCompensation" display-name="转移0" is-loop="false" is-default="false">
+            <f20:description>This is transition0</f20:description>
+        </f20:transition>
+        <f20:transition id="TheProcess4TestSerializer_1.start_router1" from="TheProcess4TestSerializer_1.Start" to="TheProcess4TestSerializer_1.Router" name="start_router1" is-loop="false" is-default="false"/>
+        <f20:transition id="TheProcess4TestSerializer_1.router1_activity1" from="TheProcess4TestSerializer_1.Router" to="TheProcess4TestSerializer_1.Activity1" name="router1_activity1" is-loop="false" is-default="false"/>
+        <f20:transition id="TheProcess4TestSerializer_1.activity1_end1" from="TheProcess4TestSerializer_1.Activity1" to="TheProcess4TestSerializer_1.End1" name="activity1_end1" is-loop="false" is-default="false"/>
+        <f20:transition id="TheProcess4TestSerializer_1.router1_activity2" from="TheProcess4TestSerializer_1.Router" to="TheProcess4TestSerializer_1.Activity2" name="router1_activity2" is-loop="false" is-default="false"/>
+        <f20:transition id="TheProcess4TestSerializer_1.activity2_end2" from="TheProcess4TestSerializer_1.Activity1" to="TheProcess4TestSerializer_1.End1" name="activity2_end2" is-loop="false" is-default="false"/>
+    </f20:transitions>
+</f20:workflow-process>

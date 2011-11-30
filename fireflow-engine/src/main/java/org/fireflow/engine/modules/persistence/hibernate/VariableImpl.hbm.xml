@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.fireflow.engine.entity.runtime.impl.VariableImpl"
+		table="T_FF_RT_VARIABLE">
+		<id name="id" type="java.lang.String">
+			<column length="50" name="ID" />
+			<generator class="uuid" />
+		</id>
+
+		<property name="name" type="java.lang.String"  unique-key="var_key">
+			<column length="100" name="NAME" not-null="true" />
+		</property>
+		
+		<property name="scopeId" type="java.lang.String" unique-key="var_key">
+			<column length="50" name="SCOPE_ID" not-null="true" />
+		</property>
+		<property name="dataType" type="java.lang.String">
+			<column length="200" name="DATA_TYPE"  />
+		</property>
+		<property name="valueAsString" type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<column name="VALUE_AS_STRING"  />
+		</property>
+		<!--  -->
+		
+
+		
+		<property name="processId" type="java.lang.String" update="false">
+			<column length="100" name="PROCESS_ID" not-null="true">
+				<comment>流程id</comment>
+			</column>
+		</property>
+		<property name="version" type="java.lang.Integer" update="false">
+			<column length="4" name="VERSION" not-null="true">
+				<comment>流程版本号</comment>
+			</column>
+		</property>
+		<property name="processType" type="java.lang.String" update="false">
+			<column length="100" name="PROCESS_TYPE" not-null="true">
+				<comment>流程类型</comment>
+			</column>
+		</property>
+
+	</class>
+</hibernate-mapping>

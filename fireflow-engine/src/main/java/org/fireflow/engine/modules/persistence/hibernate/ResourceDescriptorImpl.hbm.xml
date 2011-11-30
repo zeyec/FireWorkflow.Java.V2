@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.fireflow.engine.entity.repository.impl.ResourceDescriptorImpl"
+		table="T_FF_DF_RESOURCE_DESCRIPTOR">
+		<id name="id" type="java.lang.String">
+			<column length="50" name="ID" />
+			<generator class="uuid" />
+		</id>
+		<property name="resourceId" type="java.lang.String" update="false" unique-key="RSC_DESC_RESOUCE_ID">
+			<column length="100" name="RESOURCE_ID" not-null="true" />
+		</property>	
+		<property name="name" type="java.lang.String">
+			<column length="100" name="NAME" not-null="true" />
+		</property>
+		<property name="displayName" type="java.lang.String">
+			<column length="128" name="DISPLAY_NAME" />
+		</property>
+		<property name="description" type="java.lang.String">
+			<column length="1024" name="DESCRIPTION" />
+		</property>		
+		<property name="resourceType" type="java.lang.String" >
+			<column length="300" name="RESOURCE_TYPE" />
+		</property>				
+		<property name="fileName" type="java.lang.String" >
+			<column length="200" name="FILE_NAME" not-null="true" />
+		</property>		
+		
+		<property name="latestEditor" type="java.lang.String">
+			<column length="50" name="LATEST_EDITOR" not-null="true"/>
+		</property>
+		<property name="latestEditTime" type="java.util.Date">
+			<column name="LATEST_EDIT_TIME" not-null="true"/>
+		</property>		
+	</class>
+</hibernate-mapping>

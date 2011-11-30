@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class dynamic-update="true"
+		name="org.fireflow.engine.entity.repository.impl.ProcessRepositoryImpl" table="T_FF_DF_PROCESS_REPOSITORY"
+		polymorphism="explicit">
+		<id name="id" type="java.lang.String">
+			<column length="50" name="ID" />
+			<generator class="uuid.hex">
+			</generator>
+		</id>
+		<property name="processId" type="java.lang.String">
+			<column length="100" name="PROCESS_ID" not-null="true" />
+		</property>
+		<property name="processType" type="java.lang.String">
+			<column length="100" name="PROCESS_TYPE" not-null="true" />
+		</property>			
+		<property name="version" type="java.lang.Integer">
+			<column length="4" name="VERSION" not-null="true" />
+		</property>
+					
+		<property name="name" type="java.lang.String">
+			<column length="100" name="NAME" not-null="true" />
+		</property>
+		<property name="displayName" type="java.lang.String">
+			<column length="128" name="DISPLAY_NAME" />
+		</property>
+		<property name="description" type="java.lang.String">
+			<column length="1024" name="DESCRIPTION" />
+		</property>
+		<property name="bizCategory" type="java.lang.String">
+			<column length="200" name="BIZ_CATEGORY" />
+		</property>	
+		<property name="fileName" type="java.lang.String">
+			<column length="200" name="FILE_NAME" />
+		</property>				
+
+		<property name="publishState" type="java.lang.Boolean">
+			<column length="1" name="STATE" not-null="true" />
+		</property>
+		<property name="latestEditor" type="java.lang.String">
+			<column length="50" name="LATEST_EDITOR" not-null="true"/>
+		</property>
+		<property name="latestEditTime" type="java.util.Date">
+			<column name="LATEST_EDIT_TIME" not-null="true"/>
+		</property>	
+		<property name="latestOperation" type="java.lang.String">
+			<column length="50" name="LATEST_OPERATION" not-null="true"/>
+		</property>				
+		
+		<property name="ownerDeptId" type="java.lang.String">
+			<column length="100" name="OWNER_DEPT_ID" />
+		</property>			
+		<property name="ownerDeptName" type="java.lang.String">
+			<column length="100" name="OWNER_DEPT_NAME" />
+		</property>	
+		<property name="approver" type="java.lang.String">
+			<column length="100" name="APPROVER" />
+		</property>	
+		<property name="approvedTime" type="java.util.Date">
+			<column name="APPROVED_TIME"/>
+		</property>		
+		
+		<property name="processAsXml"
+			type="org.springframework.orm.hibernate3.support.ClobStringType">
+			<column name="PROCESS_CONTENT" />
+		</property>			
+	</class>
+</hibernate-mapping>
+

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<f20:workflow-process xmlns:f20="http://www.fireflow.org/schema/workflowprocess" xmlns:s="http://www.fireflow.org/schema/service" xmlns:r="http://www.fireflow.org/schema/resource" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.fireflow.org/schema/workflowprocess http://www.fireflow.org/schema/workflowprocess/WorkflowProcessSchema-2.0.xsd http://www.fireflow.org/schema/service http://www.fireflow.org/schema/service/ServiceSchema-2.0.xsd http://www.fireflow.org/schema/resource http://www.fireflow.org/schema/resource/ResourceSchema-2.0.xsd" id="TheSimplestJavaExecutorProcess" name="TheSimplestJavaExecutorProcess" entry="TheSimplestJavaExecutorProcess.Start">
+    <s:services>
+        <s:service id="MathOperationBean" name="MathOperationBean" service-type="Java" display-name="数学运算操作">
+            <s:operations>
+                <s:operation>
+                    <s:operation-name>add</s:operation-name>
+                    <s:io-specification>
+                        <s:inputs>
+                            <s:input name="a" data-type="int"/>
+                            <s:input name="b" data-type="int"/>
+                        </s:inputs>
+                        <s:outputs>
+                            <s:output name="out" data-type="int"/>
+                        </s:outputs>
+                    </s:io-specification>
+                </s:operation>
+            </s:operations>
+            <s:prop-groups>
+                <s:prop-group name="Common Properties" display-name="Common Properties">
+                    <s:prop name="JavaClassName" display-name="java类名" value="org.fireflow.pdl.fpdl20.test.service.javaexecutor.MathOperationBean"/>
+                </s:prop-group>
+            </s:prop-groups>
+        </s:service>
+        <s:service id="MathOperationBean" name="MathOperationBean" service-type="Java" display-name="数学运算操作">
+            <s:operations>
+                <s:operation>
+                    <s:operation-name>multiply</s:operation-name>
+                    <s:io-specification>
+                        <s:inputs>
+                            <s:input name="a" data-type="int"/>
+                            <s:input name="b" data-type="int"/>
+                        </s:inputs>
+                        <s:outputs>
+                            <s:output name="out" data-type="int"/>
+                        </s:outputs>
+                    </s:io-specification>
+                </s:operation>
+            </s:operations>
+            <s:prop-groups>
+                <s:prop-group name="Common Properties" display-name="Common Properties">
+                    <s:prop name="JavaBeanName" display-name="Java Bean 名称" value="#MathOperationBean"/>
+                </s:prop-group>
+            </s:prop-groups>
+        </s:service>
+    </s:services>
+    <f20:properties>
+        <f20:property id="TheSimplestJavaExecutorProcess.x" name="x" data-type="java.lang.Integer" init-value="1"/>
+        <f20:property id="TheSimplestJavaExecutorProcess.y" name="y" data-type="java.lang.Integer" init-value="5"/>
+        <f20:property id="TheSimplestJavaExecutorProcess.z" name="z" data-type="java.lang.Integer" init-value="0"/>
+        <f20:property id="TheSimplestJavaExecutorProcess.m" name="m" data-type="java.lang.Integer" init-value="0"/>
+    </f20:properties>
+    <f20:start-nodes>
+        <f20:start-node id="TheSimplestJavaExecutorProcess.Start" name="Start">
+            <f20:decorator>
+                <f20:normal-start-decorator/>
+            </f20:decorator>
+        </f20:start-node>
+    </f20:start-nodes>
+    <f20:activities>
+        <f20:activity id="TheSimplestJavaExecutorProcess.Activity1" name="Activity1" loop-strategy="org.fireflow.constants.REDO">
+            <f20:service-binding service-id="MathOperationBean" operation-name="add">
+                <f20:input-assignments>
+                    <f20:input-assignment>
+                        <f20:from>
+                            <f20:expression language="JEXL">
+                                <f20:body>processVars.x</f20:body>
+                            </f20:expression>
+                        </f20:from>
+                        <f20:to>inputs.a</f20:to>
+                    </f20:input-assignment>
+                    <f20:input-assignment>
+                        <f20:from>
+                            <f20:expression language="JEXL">
+                                <f20:body>processVars.y</f20:body>
+                            </f20:expression>
+                        </f20:from>
+                        <f20:to>inputs.b</f20:to>
+                    </f20:input-assignment>
+                </f20:input-assignments>
+                <f20:output-assignments>
+                    <f20:output-assignment>
+                        <f20:from>
+                            <f20:expression language="JEXL">
+                                <f20:body>outputs.out</f20:body>
+                            </f20:expression>
+                        </f20:from>
+                        <f20:to>processVars.z</f20:to>
+                    </f20:output-assignment>
+                </f20:output-assignments>
+            </f20:service-binding>
+        </f20:activity>
+        <f20:activity id="TheSimplestJavaExecutorProcess.Activity2" name="Activity2" loop-strategy="org.fireflow.constants.REDO">
+            <f20:service-binding service-id="MathOperationBean" operation-name="multiply">
+                <f20:input-assignments>
+                    <f20:input-assignment>
+                        <f20:from>
+                            <f20:expression language="JEXL">
+                                <f20:body>processVars.y</f20:body>
+                            </f20:expression>
+                        </f20:from>
+                        <f20:to>inputs.a</f20:to>
+                    </f20:input-assignment>
+                    <f20:input-assignment>
+                        <f20:from>
+                            <f20:expression language="JEXL">
+                                <f20:body>processVars.z</f20:body>
+                            </f20:expression>
+                        </f20:from>
+                        <f20:to>inputs.b</f20:to>
+                    </f20:input-assignment>
+                </f20:input-assignments>
+                <f20:output-assignments>
+                    <f20:output-assignment>
+                        <f20:from>
+                            <f20:expression language="JEXL">
+                                <f20:body>outputs.out</f20:body>
+                            </f20:expression>
+                        </f20:from>
+                        <f20:to>processVars.m</f20:to>
+                    </f20:output-assignment>
+                </f20:output-assignments>
+            </f20:service-binding>
+        </f20:activity>
+    </f20:activities>
+    <f20:end-nodes>
+        <f20:end-node id="TheSimplestJavaExecutorProcess.End" name="End">
+            <f20:decorator>
+                <f20:normal-end-decorator/>
+            </f20:decorator>
+        </f20:end-node>
+    </f20:end-nodes>
+    <f20:transitions>
+        <f20:transition id="TheSimplestJavaExecutorProcess.start_activity1" from="TheSimplestJavaExecutorProcess.Start" to="TheSimplestJavaExecutorProcess.Activity1" name="start_activity1" is-loop="false" is-default="false"/>
+        <f20:transition id="TheSimplestJavaExecutorProcess.activity2_end" from="TheSimplestJavaExecutorProcess.Activity2" to="TheSimplestJavaExecutorProcess.End" name="activity2_end" is-loop="false" is-default="false"/>
+        <f20:transition id="TheSimplestJavaExecutorProcess.activity1_activity2" from="TheSimplestJavaExecutorProcess.Activity1" to="TheSimplestJavaExecutorProcess.Activity2" name="activity1_activity2" is-loop="false" is-default="false"/>
+    </f20:transitions>
+</f20:workflow-process>

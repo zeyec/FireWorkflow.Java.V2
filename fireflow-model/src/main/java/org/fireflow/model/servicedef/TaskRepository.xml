@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+    <bean id="runtimeContext"
+          class="org.fireflow.engine.RuntimeContext"
+          init-method="initialize">
+        <property name="taskInstanceManager">
+            <ref local="taskInstanceManager"/>
+        </property>
+        <property name="definitionService">
+            <ref local="definitionService"/>
+        </property>
+        <property name="persistenceService">
+            <ref local="persistenceService"/>
+        </property>
+        <property name="conditionResolver">
+            <ref local="ikConditionResolver"/>
+        </property>
+        <property name="calendarService">
+            <ref local="calendarService"/>
+        </property>
+        <property name="beanFactory">
+            <ref local="springBeanFactory"/>
+        </property>
+        <property name="kernelManager">
+            <ref local="kernelManager"/>
+        </property>
+        <property name="enableTrace">
+        	<value>true</value>
+        </property>
+    </bean>
+</beans>

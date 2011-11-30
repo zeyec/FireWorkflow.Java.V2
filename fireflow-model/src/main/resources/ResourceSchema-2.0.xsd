@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.fireflow.org/schema/resource" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:r="http://www.fireflow.org/schema/resource">
+
+    <element name="resources" type="r:resourcesType"></element>
+
+    <element name="resource" type="r:resourceType"></element>
+
+    <complexType name="resourcesType">
+    	<sequence>
+    		<element ref="r:resource" minOccurs="0" maxOccurs="unbounded"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="resourceType">
+    	<sequence>
+    		<element ref="r:resolver" minOccurs="0" maxOccurs="1"></element>
+    	</sequence>
+    	<attribute name="id" type="string" use="required"></attribute>
+    	<attribute name="name" type="string" use="required"></attribute>
+    	<attribute name="display-name" type="string"></attribute>
+    	<attribute name="resource-type">
+    		<simpleType>
+    			<restriction base="string">
+    				<enumeration value="org.fireflow.constants.ProcessInstanceCreator"></enumeration>
+    				<enumeration value="org.fireflow.constants.ActivityInstancePerformer"></enumeration>
+    				<enumeration value="org.fireflow.constants.VariableImplication"></enumeration>
+    				<enumeration value="org.fireflow.constants.User"></enumeration>
+    				<enumeration value="org.fireflow.constants.Role"></enumeration>
+    				<enumeration value="org.fireflow.constants.Group"></enumeration>
+    				<enumeration value="org.fireflow.constants.Department"></enumeration>
+    				<enumeration value="org.fireflow.constants.Custom"></enumeration>
+    				<enumeration value="org.fireflow.constants.System"></enumeration>
+    			</restriction>
+    		</simpleType>
+    	</attribute>
+    </complexType>
+
+    <element name="resolver" type="r:resolverType"></element>
+
+    <complexType name="resolverType">
+    	<sequence>
+    		<element ref="r:parameters" minOccurs="0" maxOccurs="1"></element>
+    	</sequence>
+    	<attribute name="bean-name" type="string" use="required">
+    		<annotation>
+    			<documentation>
+    				资源解析器的bean
+    				name，如果以“#”开头，则表示是一个IOC容器中的bean，例如：#MyRoleResolver表示名称为“MyRoleResolver”的bean；否则该字段的值表示bean的class
+    				name。
+    			</documentation>
+    		</annotation>
+    	</attribute>
+    </complexType>
+
+    <element name="parameters" type="r:parametersType"></element>
+
+    <element name="parameter" type="r:parameterType"></element>
+
+    <complexType name="parametersType">
+    	<sequence>
+    		<element ref="r:parameter" minOccurs="0" maxOccurs="unbounded"></element>
+    	</sequence>
+    </complexType>
+    
+    <complexType name="parameterType">
+    	<attribute name="name" type="Name"></attribute>
+    	<attribute name="display-name" type="string"></attribute>
+    	<attribute name="data-type" type="string"></attribute>
+    	<attribute name="default-value" type="string"></attribute>
+    	<attribute name="data-pattern" type="string"></attribute>
+    </complexType>
+</schema>

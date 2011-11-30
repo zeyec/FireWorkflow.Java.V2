@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<s:services xmlns:s="http://www.fireflow.org/schema/service"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fireflow.org/schema/service http://www.fireflow.org/schema/service/ServiceSchema-2.0.xsd">
+	<s:service id="Application" name="Application" service-type="Human"
+		display-name="申请">
+		<s:operations>
+			<s:operation>
+				<s:operation-name>xyz/Application.jsp</s:operation-name>
+			</s:operation>
+		</s:operations>
+		<s:prop-groups>
+			<s:prop-group name="Common Properties" display-name="Common Properties" />
+		</s:prop-groups>
+	</s:service>
+	
+        <s:service id="MathOperationBean1" name="MathOperationBean1" service-type="Java" display-name="数学运算操作">
+            <s:operations>
+                <s:operation>
+                    <s:operation-name>add</s:operation-name>
+                    <s:io-specification>
+                        <s:inputs>
+                            <s:input name="a" data-type="int"/>
+                            <s:input name="b" data-type="int"/>
+                        </s:inputs>
+                        <s:outputs>
+                            <s:output name="out" data-type="int"/>
+                        </s:outputs>
+                    </s:io-specification>
+                </s:operation>
+            </s:operations>
+            <s:prop-groups>
+                <s:prop-group name="Common Properties" display-name="Common Properties">
+                    <s:prop name="JavaClassName" display-name="java类名" value="org.fireflow.pdl.fpdl20.test.service.javaexecutor.MathOperationBean"/>
+                </s:prop-group>
+            </s:prop-groups>
+        </s:service>
+        <s:service id="MathOperationBean" name="MathOperationBean" service-type="Java" display-name="数学运算操作">
+            <s:operations>
+                <s:operation>
+                    <s:operation-name>multiply</s:operation-name>
+                    <s:io-specification>
+                        <s:inputs>
+                            <s:input name="a" data-type="int"/>
+                            <s:input name="b" data-type="int"/>
+                        </s:inputs>
+                        <s:outputs>
+                            <s:output name="out" data-type="int"/>
+                        </s:outputs>
+                    </s:io-specification>
+                </s:operation>
+            </s:operations>
+            <s:prop-groups>
+                <s:prop-group name="Common Properties" display-name="Common Properties">
+                    <s:prop name="JavaBeanName" display-name="Java Bean 名称" value="#MathOperationBean"/>
+                </s:prop-group>
+            </s:prop-groups>
+        </s:service>	
+</s:services>

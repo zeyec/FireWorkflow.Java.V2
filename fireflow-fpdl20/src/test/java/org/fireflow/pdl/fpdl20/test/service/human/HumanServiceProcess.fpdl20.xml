@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<f20:workflow-process xmlns:f20="http://www.fireflow.org/schema/workflowprocess"
+	xmlns:s="http://www.fireflow.org/schema/service" xmlns:r="http://www.fireflow.org/schema/resource"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fireflow.org/schema/workflowprocess http://www.fireflow.org/schema/workflowprocess/WorkflowProcessSchema-2.0.xsd http://www.fireflow.org/schema/service http://www.fireflow.org/schema/service/ServiceSchema-2.0.xsd http://www.fireflow.org/schema/resource http://www.fireflow.org/schema/resource/ResourceSchema-2.0.xsd"
+	id="TheSimplestHumanProcessTest" name="TheSimplestHumanProcessTest"
+	entry="TheSimplestHumanProcessTest.Start">
+	<f20:import name="FireWorkflow-Default-Resources" id="TheSimplestHumanProcessTest.FireWorkflow-Default-Resources"
+		display-name="系统内置资源定义" type="org.fireflow.constants.RESOURCES_IMPORT"
+		location="FireWorkflow-Default-Resources.rsc.xml" />
+	<f20:import name="TheParticipants" id="TheSimplestHumanProcessTest.TheParticipants"
+		display-name="应用系统参与者" type="org.fireflow.constants.RESOURCES_IMPORT"
+		location="org/fireflow/pdl/fpdl20/test/service/human/TheParticipants.rsc.xml" />
+	<f20:import name="TheHumanServices" id="TheSimplestHumanProcessTest.TheHumanServices"
+		display-name="业务功能" type="org.fireflow.constants.SERVICES_IMPORT"
+		location="org/fireflow/pdl/fpdl20/test/service/human/TheHumanServices.svc.xml" />		
+	<f20:properties>
+		<f20:property id="TheSimplestHumanProcessTest.x" name="x"
+			data-type="java.lang.Integer" init-value="1" />
+		<f20:property id="TheSimplestHumanProcessTest.y" name="y"
+			data-type="java.lang.Integer" init-value="2" />
+		<f20:property id="TheSimplestHumanProcessTest.z" name="z"
+			data-type="java.lang.Integer" init-value="3" />
+	</f20:properties>
+	<f20:duration value="3" unit="DAY" is-business-time="true" />
+	<f20:start-nodes>
+		<f20:start-node id="TheSimplestHumanProcessTest.Start"
+			name="Start">
+			<f20:decorator>
+				<f20:normal-start-decorator />
+			</f20:decorator>
+		</f20:start-node>
+	</f20:start-nodes>
+	<f20:activities>
+		<f20:activity id="TheSimplestHumanProcessTest.Activity1"
+			name="Activity1" loop-strategy="org.fireflow.constants.REDO">
+			<f20:duration value="3" unit="DAY" is-business-time="true" />
+			<f20:service-binding service-id="Application"
+				operation-name="xyz/Application.jsp" />
+			<f20:resource-binding display-name="审批科"
+				assignment-strategy="org.fireflow.constants.ASSIGN_TO_ALL">
+				<f20:administrators>
+					<f20:resource-ref resource-id="Tester">
+						<f20:parameter-assignments>
+							<f20:parameter-assignment>
+								<f20:from>
+									<f20:expression language="JEXL">
+										<f20:body>processVars.x</f20:body>
+									</f20:expression>
+								</f20:from>
+								<f20:to>flag</f20:to>
+							</f20:parameter-assignment>
+						</f20:parameter-assignments>
+					</f20:resource-ref>
+				</f20:administrators>
+				<f20:potential-owners>
+					<f20:resource-ref resource-id="Tester">
+						<f20:parameter-assignments>
+							<f20:parameter-assignment>
+								<f20:from>
+									<f20:expression language="JEXL">
+										<f20:body>processVars.y</f20:body>
+									</f20:expression>
+								</f20:from>
+								<f20:to>flag</f20:to>
+							</f20:parameter-assignment>
+						</f20:parameter-assignments>
+					</f20:resource-ref>
+				</f20:potential-owners>
+				<f20:readers>
+					<f20:resource-ref resource-id="Tester">
+						<f20:parameter-assignments>
+							<f20:parameter-assignment>
+								<f20:from>
+									<f20:expression language="JEXL">
+										<f20:body>processVars.z</f20:body>
+									</f20:expression>
+								</f20:from>
+								<f20:to>flag</f20:to>
+							</f20:parameter-assignment>
+						</f20:parameter-assignments>
+					</f20:resource-ref>
+				</f20:readers>
+			</f20:resource-binding>
+		</f20:activity>
+	</f20:activities>
+	<f20:end-nodes>
+		<f20:end-node id="TheSimplestHumanProcessTest.End" name="End">
+			<f20:decorator>
+				<f20:normal-end-decorator />
+			</f20:decorator>
+		</f20:end-node>
+	</f20:end-nodes>
+	<f20:transitions>
+		<f20:transition id="TheSimplestHumanProcessTest.start2activity"
+			from="TheSimplestHumanProcessTest.Start" to="TheSimplestHumanProcessTest.Activity1"
+			name="start2activity" is-loop="false" is-default="false" />
+		<f20:transition id="TheSimplestHumanProcessTest.activity2end"
+			from="TheSimplestHumanProcessTest.Activity1" to="TheSimplestHumanProcessTest.End"
+			name="activity2end" is-loop="false" is-default="false" />
+	</f20:transitions>
+</f20:workflow-process>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<r:resources xmlns:r="http://www.fireflow.org/schema/resource"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fireflow.org/schema/resource http://www.fireflow.org/schema/resource/ResourceSchema-2.0.xsd">
+	<r:resource id="Tester" name="Tester" display-name="测试用户"
+		resource-type="org.fireflow.constants.Custom">
+		<r:resolver
+			bean-name="org.fireflow.pdl.fpdl20.test.service.human.CustomerResourceResolver">
+			<r:parameters>
+				<r:parameter name="flag" display-name="标志"
+					data-type="java.lang.Integer" />
+			</r:parameters>
+		</r:resolver>
+	</r:resource>
+</r:resources>
